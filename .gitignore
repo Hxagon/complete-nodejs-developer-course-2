@@ -2,3 +2,6 @@
 Würde .gitignore löschen
 Würde .idea/ löschen
 .idea
+/dist/
+/notes-node/node_modules/
+/notes-node/package-lock.json
