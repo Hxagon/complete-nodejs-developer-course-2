@@ -1,0 +1,27 @@
+{
+  "name": "notes-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "babel": "^6.23.0",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "lodash": "^4.17.5",
+    "yargs": "^11.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hxagon/complete-nodejs-developer-course-2.git"
+  },
+  "author": "ronny.lindner@shopgate.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hxagon/complete-nodejs-developer-course-2/issues"
+  },
+  "homepage": "https://github.com/Hxagon/complete-nodejs-developer-course-2#readme"
+}
