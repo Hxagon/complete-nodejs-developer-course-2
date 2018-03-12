@@ -1,22 +1,30 @@
-const request = require('request')
+const yargs = require('yargs')
+const geocode = require('./geocode/geocode.js')
+const weather = require('./weather')
 
-console.log('Starting weather app')
+const argv = yargs
+  .options({
+    a: {
+      demand: true,
+      alias: 'address',
+      describe: 'Address to fetch weather for',
+      string: true
+    }
+  })
+  .help()
+  .alias('help', 'h')
+  .argv
 
-request({
-  url: 'https://maps.googleapis.com/maps/api/geocode/json?address=39108%20Olvenstedter%20Strasse%20Magdeburg&key=AIzaSyBfztEfUODSSsxWSmAfBMcRfpxghpiEZy8',
-  json: true
-}, (error, response, body) => {
-  if (error) {
-    console.debug(error)
+geocode.geocodeAddress(argv.address, (errorMessage, results) => {
+  if (errorMessage) {
+    console.log(errorMessage)
+  } else {
+    weather.getWeather(results.lat, results.lng, (errorMessage, results) => {
+      if (errorMessage) {
+        console.log(errorMessage)
+      } else {
+        console.log(`It is ${results.temperature}`)
+      }
+    })
   }
-
-  const address = body.results[0].formatted_address
-  const location = body.results[0].geometry.location
-
-  // console.log(JSON.stringify(response, undefined, 2))
-  console.log(`Address: ${address}`)
-  console.log(`Lat: ${location.lat}`)
-  console.log(`Lng: ${location.lng}`)
 })
-
-console.log('Finishing weather app')
