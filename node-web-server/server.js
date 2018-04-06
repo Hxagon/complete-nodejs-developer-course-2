@@ -28,18 +28,47 @@ app.use((request, response, next) => {
 })
 
 // Maintenance-Middleware
-/*app.use((request, response, next) => {
+/* app.use((request, response, next) => {
   response.render('maintenance.hbs', {
     pageTitle: 'Maintenance',
     welcomeMessage: 'Sorry, this site is currently under construction'
   })
-})*/
+}) */
 
 hbs.registerHelper('screamIt', (text) => {
   return text.toUpperCase()
 })
 
 // Route-Handlers
+app.get('/categories', (request, response) => {
+  setTimeout(() => {
+    response.setHeader('Content-Type', 'application/json')
+    const categories = {
+      '10': {
+        'entity_id': '10',
+        'img_thumb_url': 'http://url.com/media/catalog/category/pants10.jpeg',
+        'min_price': '100.0000'
+      },
+      '11': {
+        'entity_id': '11',
+        'img_thumb_url': 'http://url.com/media/catalog/category/pants11.jpeg',
+        'min_price': '110.0000'
+      },
+      '12': {
+        'entity_id': '12',
+        'img_thumb_url': 'http://url.com/media/catalog/category/pants12.jpeg',
+        'min_price': '120.0000'
+      },
+      '13': {
+        'entity_id': '13',
+        'img_thumb_url': 'http://url.com/media/catalog/category/pants13.jpeg',
+        'min_price': '130.0000'
+      }
+    }
+    response.send(JSON.stringify(categories, null, 3))
+  }, 3500)
+})
+
 app.get('/', (request, response) => {
   response.render('home.hbs', {
     pageTitle: 'Home page',
